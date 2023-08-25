@@ -11,16 +11,18 @@ const controller = {
 		return res.render("index", {
 			visited: products.filter(product => product.category ==="visited"),
 			sale: products.filter(product => product.category ==="in-sale"),
-			products,
 			toThousand
 		})
 	},
 	search: (req, res) => {
-		const result = products.filter(product =>product.name.toLowerCase().includes(req.query.keyboards.toLowerCase()));
+		const keywords = req.query.keywords;
+		const result = products.filter(product =>product.name.toLowerCase().includes(keywords.toLowerCase()));
 		return res.render("results",{
 			result,
+			keywords,
 			toThousand
-		})
+		}) 
+		
 	},
 };
 
